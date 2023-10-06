@@ -1,0 +1,67 @@
+/*general*/
+
+
+/*Header*/
+.navbar-brand{
+    color: #fff;
+}
+
+.nav-link{
+    color: #fff;
+}
+
+/*Formulario agregar categoria*/
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.my-4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    background-color: #000000;
+    padding: 2%;
+}
+
+.my-4 label{
+    color: #fff;
+}
+.form-group{
+    width: 10vw;
+    margin-bottom: 2em;
+}
+
+/*categorias*/
+.fragil{
+    background-color: rgba(254, 42, 42, 0.813);
+}
+
+.container-categorias{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+}
+.container-categorias ul{
+    width: 40vw;
+}
+.list-group-item{
+    background-color: #000000;
+    color: #fff;
+}
+.container-categorias ul li a{
+    text-decoration: none;
+    font-weight: bolder;
+
+}
+
+
+/*footer*/
+footer{
+    background-color: #00000041;
+}
