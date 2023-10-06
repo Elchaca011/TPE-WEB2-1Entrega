@@ -1,0 +1,24 @@
+
+<?php require_once("templates/header.phtml") ?>
+
+
+<div class="container-categorias">
+<ul class = 'list-group'>
+    <?php foreach($productos as $producto): ?>
+            <li class ='list-group-item list-group-item-dark '> Nombre: <?= $producto->nombre ?>
+                <a href="'borrarCategoria/<?=$producto->id_producto ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Material: <?= $producto->material ?>
+                <a href="borrarCategoria/<?=$producto->id_producto ?>"  type='button' class='btn btn-danger ml-auto'>Borrar</a>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Color: <?= $producto->color ?>
+                <a href="borrarCategoria/<?=$producto->id_producto ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Precio: <?= $producto->precio ?>
+                <a href="borrarCategoria/<?=$producto->id_producto ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
+            </li>
+    <?php endforeach?>
+</ul>
+</div>
+
+<?php require_once("templates/footer.phtml") ?>
