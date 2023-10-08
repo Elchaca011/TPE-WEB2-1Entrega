@@ -1,15 +1,16 @@
 
 <?php require_once("templates/header.phtml") ?>
-<?php require_once("templates/formularioCategorias.phtml");?>
+<?php require_once("templates/formularioCategorias.phtml")?>
 
 
-<div class="container-categorias">
+<div class="container-listado">
 <ul class = 'list-group'>
     <?php foreach($categorias as $categoria): ?>
         <?php if($categoria->fragil): ?>
             <li class ='list-group-item list-group-item-dark fragil'>Categoria:<?= $categoria->categoria ?>
                 <a href="borrarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
                 <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
+                <a href="modificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">No fragil</a>
             </li>
         <?php endif?>
         <?php if(!$categoria->fragil): ?>
