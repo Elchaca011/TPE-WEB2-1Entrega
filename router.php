@@ -26,7 +26,15 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "borrarCategoria":
         $controladorCategoria->eliminarCategoria($params[1]);
         break;
+    case "modificarCategoria":
+        $controladorCategoria->modificarCategoria($params[1]);
+        break;
     case "mostrarProducto":
         $controladorProducto->mostrarProductoXCategoria($params[1]);
-
+        break;
+    case "mostrarProductos":
+        $controladorProducto->mostrarProductos();
+        break;
+    case "agregarProducto":
+        $controladorProducto->agregarProducto();
 }  

@@ -1,11 +1,13 @@
 <?php
+//Incluyo el config.php el cual se encarga de la conexion a la db
+require_once("config.php");
 class CategoriaModel{
     //Atributo
     private $db;
 
     //Constructor
     function __construct(){
-        $this->db = new PDO("mysql:host=localhost;dbname=db_tpe;charset=utf8", "root", "");
+        $this->db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";" . DB_Charset , DB_USER , DB_PASS);
     }
 
     //Obtiene y devuelve de la base de datos todas las categorias.
@@ -37,4 +39,9 @@ class CategoriaModel{
         $query->execute([$id]);
     }
 
+    //Edita el atributo fragil de la base de datos
+    public function modificarCategoria($id){
+        $query = $this->db->prepare("UPDATE categorias SET fragil = 0 WHERE id_categoria = ?");
+        $query->execute([$id]);
+    }
 }

@@ -20,7 +20,7 @@ class CategoriaController{
         //Obtengo las categorias de la base de datos (model)
         $categorias = $this->model->getCategorias();
 
-        //Muestro las categorias (view)
+        //Muestro las categorias(view)
         $this->view->mostrarCategorias($categorias);
     }
 
@@ -56,4 +56,9 @@ class CategoriaController{
         header("location: ". BASE_URL );
     }
     
+    //Funcion para modificar categoria (atributo fragil)
+    public function modificarCategoria($id){
+        $this->model->modificarCategoria($id);
+        header("location: ". BASE_URL );
+    }
 }
