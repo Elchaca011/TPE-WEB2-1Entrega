@@ -1,4 +1,9 @@
-/*general*/
+/*body*/
+body{
+    background-image: url('../img/fondo-pagina.jpg');
+    background-size: cover; 
+    background-position: center center; 
+}
 
 
 /*Header*/
@@ -67,5 +72,5 @@
 
 /*footer*/
 footer{
-    background-color: #00000041;
+    background-color: #000000c8;
 }

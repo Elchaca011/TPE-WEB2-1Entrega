@@ -36,6 +36,7 @@ class ProductoController{
         $id_categoria = $_POST["id_categoria"];
         $nombre = $_POST["nombre"];
         $material = $_POST["material"];
+        $color = $_POST["color"];
         $precio = $_POST["precio"];
 
         //Validaciones
@@ -47,14 +48,19 @@ class ProductoController{
             }
         }
 
-        $id = $this->model->agregarProducto($id_categoria,$nombre,$material,$precio);
+        $id = $this->model->agregarProducto($id_categoria,$nombre,$material,$color,$precio);
         
         if($id){
-            //Redirigo al usuario a la pantalla principal
-            header("location: ". BASE_URL );
+            //Redirigo al usuario a la pantalla de productos
+            header("location: mostrarProductos" );
         }else{
             $this->view->mostrarError("los datos no pueden ser cargados");
         }
+    }
+
+    public function eliminarProducto($id){
+        $this->model->eliminarProducto($id);
+        header("location: ". BASE_URL);
     }
 
 }

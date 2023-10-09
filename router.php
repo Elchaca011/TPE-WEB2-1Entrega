@@ -37,4 +37,8 @@ switch($params[0]){ //en la primer posicion tengo la accion real
         break;
     case "agregarProducto":
         $controladorProducto->agregarProducto();
+        break;
+    case "eliminarProducto":
+        $controladorProducto->eliminarProducto($params[1]);
+        break;
 }  

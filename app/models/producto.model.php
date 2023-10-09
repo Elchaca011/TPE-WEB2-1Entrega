@@ -36,12 +36,17 @@ class ProductoModel{
         return $productosXCategoria;
     }
 
-    public function agregarProducto($id_categoria,$nombre,$material,$precio){
-        //Blindeo(Protego) los parametreos con VALUES(?,?,?,?) (seguridad)
-        $query = $this->db->prepare("INSERT INTO productos (id_categoria,nombre,material,precio)VALUES(?,?,?,?)");
-        $query->execute([$id_categoria,$nombre,$material,$precio]);
+    public function agregarProducto($id_categoria,$nombre,$material,$color,$precio){
+        //Blindeo(Protego) los parametreos con VALUES(?,?,?,?,?) (seguridad)
+        $query = $this->db->prepare("INSERT INTO productos (id_categoria,nombre,material,color,precio)VALUES(?,?,?,?,?)");
+        $query->execute([$id_categoria,$nombre,$material,$color,$precio]);
 
         return $this->db->lastInsertId();
+    }
+
+    public function eliminarProducto($id){
+        $query = $this->db->prepare("DELETE FROM productos WHERE id_producto = ?");
+        $query->execute([$id]);
     }
     
 
