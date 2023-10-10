@@ -50,4 +50,7 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "eliminarProducto":
         $controladorProducto->eliminarProducto($params[1]);
         break;
+    default:
+        $controladorHome->mostrar404("error 404");
+        break;
 }  
