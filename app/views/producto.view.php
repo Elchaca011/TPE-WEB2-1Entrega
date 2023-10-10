@@ -5,16 +5,18 @@ class ProductoView{
         require("templates/productos.phtml");
     }
 
-    //Mostrar porudctos por una categoria dada (Lado del front)
+    //funcion encargada de mostrar porudctos por una categoria dada (Lado del front)
     public function mostrarProductosXCategoria($productos){
         require("templates/productosXCategoria.phtml");
     }
 
-    public function mostrarFormularioProductos(){
-        require_once ("templates/formularioProductos.phtml");
+    //funcion encargada de mostrar el detalle de un producto determinado
+    public function mostrarDetalle($producto){
+        require("templates/detalleProducto.phtml");
     }
 
-    //Funcion encargada de manejar errores
+
+    //esta funcion es la encargada de manejar errores
     public function mostrarError($error){
         require_once("templates/error.phtml");
     }

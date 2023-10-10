@@ -13,20 +13,29 @@ class ProductoController{
         $this->view = new ProductoView;
     }
 
-    //Metodos
+    //metodos
+
     public function mostrarProductos(){
         //obtengo los productos de la db
         $productos = $this->model->getProductos();
-        //Muestro los productos (view)
+        //muestro los productos (view)
         $this->view->mostrarProductos($productos);
     }
 
     public function mostrarProductoXCategoria($id_fk){
-        //Obtengo los productos de una categoria determinada de la base de datos
+        //obtengo los productos de una categoria determinada de la base de datos
         $productos = $this->model->getProductosXCategoria($id_fk);
 
-        //Muestro esos productos
+        //muestro esos productos (view)
         $this->view->mostrarProductosXCategoria($productos);
+    }
+
+    public function mostrarDetalleProducto($id){
+        //obtengo un determinado producto para ver sus detalles
+        $producto = $this->model->getProducto($id);
+
+        //muestro el detalle de ese producto
+        $this->view->mostrarDetalle($producto);
     }
 
     //funcion que inserta un nuevo producto en la base de datos
@@ -39,10 +48,10 @@ class ProductoController{
         $color = $_POST["color"];
         $precio = $_POST["precio"];
 
-        //Validaciones
+        //validaciones
         foreach($_POST as $item){
             if(empty($item)){
-                //Si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
+                //si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
                 $this->view->mostrarError("Debe completar todos los campos");
                 return;
             }
@@ -51,8 +60,8 @@ class ProductoController{
         $id = $this->model->agregarProducto($id_categoria,$nombre,$material,$color,$precio);
         
         if($id){
-            //Redirigo al usuario a la pantalla de productos
-            header("location: mostrarProductos" );
+            //redirigo al usuario a la pantalla de productos
+            header("location:" . BASE_URL ."mostrarProductos" );
         }else{
             $this->view->mostrarError("los datos no pueden ser cargados");
         }
@@ -60,7 +69,7 @@ class ProductoController{
 
     public function eliminarProducto($id){
         $this->model->eliminarProducto($id);
-        header("location: ". BASE_URL);
+        header("location:" . BASE_URL ."mostrarProductos");
     }
 
 }
