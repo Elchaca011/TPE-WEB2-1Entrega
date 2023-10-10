@@ -2,7 +2,11 @@
 body{
     background-image: url('../img/fondo-pagina.jpg');
     background-size: cover; 
-    background-position: center center; 
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 
@@ -14,6 +18,28 @@ body{
 .nav-link{
     color: #fff;
 }
+
+
+/*home*/
+.home{
+    background-color: #000000c5;
+    color: #fff;
+    text-align: center;
+    margin-left: 8em;
+    margin-right: 8em;
+    padding: 2%;
+    height: 60vh;
+}
+
+.home h1{
+    font-size: 3em;
+}
+
+.presentacion{
+    padding: 3%;
+    font-size: 1.2em;
+}
+
 
 /*Formularios*/
 .form-container{
@@ -28,8 +54,8 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20vw;
-    background-color: #000000;
+    width: 30vw;
+    background-color: #000000c5;
     padding: 2%;
 }
 
@@ -37,16 +63,15 @@ body{
     color: #fff;
 }
 .form-group{
-    width: 10vw;
+    width: 15vw;
     margin-bottom: 2em;
 }
 
 .form-group input{
-    width: 10vw;
+    width: 15vw;
 }
 
 /*listados*/
-
 .container-listado{
     display: flex;
     flex-direction: column;
@@ -56,12 +81,15 @@ body{
 .container-listado ul{
     width: 40vw;
 }
-.container-listado ul li a{
-    text-decoration: none;
+.container-listado ul li{
+    font-size: 1.5em;
     font-weight: bolder;
 }
+.container-listado ul li a{
+    text-decoration: none;
+}
 .list-group-item{
-    background-color: #000000;
+    background-color: #000000c5;
     color: #fff;
 }
 

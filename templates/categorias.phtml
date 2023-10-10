@@ -7,14 +7,14 @@
 <ul class = 'list-group'>
     <?php foreach($categorias as $categoria): ?>
         <?php if($categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark fragil'>Categoria:<?= $categoria->categoria ?>
+            <li class ='list-group-item list-group-item-dark fragil'><?= $categoria->categoria ?>s
                 <a href="borrarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
                 <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
                 <a href="modificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">No fragil</a>
             </li>
         <?php endif?>
         <?php if(!$categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark'>Categoria:<?= $categoria->categoria ?>
+            <li class ='list-group-item list-group-item-dark'><?= $categoria->categoria ?>s
                 <a href="borrarCategoria/<?=$categoria->id_categoria ?> "type='button' class='btn btn-danger ml-auto'>Borrar</a>
                 <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
             </li>
