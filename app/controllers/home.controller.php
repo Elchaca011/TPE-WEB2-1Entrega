@@ -15,4 +15,9 @@ class HomeController{
     public function mostrarHome(){
         $this->view->mostrarHome();
     }
+
+    //funcion para atajar una url que no existe (error 404)
+    public function mostrar404($error){
+        $this->view->mostrar404($error);
+    }
 }

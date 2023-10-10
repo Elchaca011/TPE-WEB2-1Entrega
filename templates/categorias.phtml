@@ -7,16 +7,20 @@
 <ul class = 'list-group'>
     <?php foreach($categorias as $categoria): ?>
         <?php if($categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark fragil'><?= $categoria->categoria ?>s
-                <a href="borrarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
-                <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
-                <a href="modificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">No fragil</a>
+            <li class ='list-group-item list-group-item-dark fragil'><span class="item-principal"><?= $categoria->categoria ?>s</span>
+                <div class="links-listado">
+                    <a href="borrarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
+                    <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
+                    <a href="modificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">No fragil</a>
+                </div>
             </li>
         <?php endif?>
         <?php if(!$categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark'><?= $categoria->categoria ?>s
-                <a href="borrarCategoria/<?=$categoria->id_categoria ?> "type='button' class='btn btn-danger ml-auto'>Borrar</a>
-                <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
+            <li class ='list-group-item list-group-item-dark'><span class="item-principal"><?= $categoria->categoria ?>s</span>
+                <div class="links-listado">
+                    <a href="borrarCategoria/<?=$categoria->id_categoria ?> "type='button' class='btn btn-danger ml-auto'>Borrar</a>
+                    <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
+                </div>
             </li>
         <?php endif ?>
     <?php endforeach?>
