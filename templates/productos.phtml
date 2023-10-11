@@ -1,0 +1,24 @@
+
+<?php require_once("templates/header.phtml") ?>
+
+<?php require_once("templates/formularioProductos.phtml") ?>
+
+<div class="container-listado">
+<ul class = 'list-group'>
+    <?php foreach($productos as $producto): ?>
+            <li class ='list-group-item list-group-item-dark '> Nombre: <?= $producto->nombre ?>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Material: <?= $producto->material ?>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Color: <?= $producto->color ?>
+            </li>
+            <li class ='list-group-item list-group-item-dark'> Precio: <?= $producto->precio ?>
+            </li>
+            <li>
+            <a href="eliminarProducto/<?=$producto->id_producto?>" type='button' class='btn btn-danger ml-auto eliminar'>Eliminar</a>
+            </li>
+    <?php endforeach?>
+</ul>
+</div>
+
+<?php require_once("templates/footer.phtml") ?>

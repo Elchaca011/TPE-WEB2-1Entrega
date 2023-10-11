@@ -1,0 +1,16 @@
+<?php require_once("templates/header.phtml") ?>
+
+
+<div class="container-listado">
+<ul class = 'list-group'>
+            <li class ='list-group-item list-group-item-dark '> Material: <?= $producto->material ?>
+            </li>
+            <li class ='list-group-item list-group-item-dark '> Color: <?= $producto->color ?>
+            </li>
+            <li class ='list-group-item list-group-item-dark '> Precio: <?= $producto->precio ?>
+            </li>
+</ul>
+<a href="mostrarProducto/<?=$producto->id_categoria?>" class="btn btn-primary">Back</a>
+</div>
+
+<?php require_once("templates/footer.phtml") ?>

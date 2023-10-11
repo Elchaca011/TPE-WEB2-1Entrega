@@ -1,0 +1,15 @@
+<?php require_once("templates/header.phtml") ?>
+
+
+<div class="container-listado">
+<ul class = 'list-group'>
+    <?php foreach($productos as $producto): ?>
+            <li class ='list-group-item list-group-item-dark '><?= $producto->nombre ?>
+                <a href="mostrarDetalleProducto/<?=$producto->id_producto?>">Ver detalle</a>
+            </li>
+    <?php endforeach?>
+</ul>
+<a href="categorias" class="btn btn-primary">Back</a>
+</div>
+
+<?php require_once("templates/footer.phtml") ?>
