@@ -1,18 +1,23 @@
 <?php
 class ProductoView{
 
-    public function mostrarProductos($productos){
-        require("templates/productos.phtml");
+    public function mostrarProductos($productos, $categorias , $esAdmin = false){
+        require_once("templates/productos.phtml");
     }
 
     //funcion encargada de mostrar porudctos por una categoria dada (Lado del front)
     public function mostrarProductosXCategoria($productos){
-        require("templates/productosXCategoria.phtml");
+        require_once("templates/productosXCategoria.phtml");
     }
 
     //funcion encargada de mostrar el detalle de un producto determinado
     public function mostrarDetalle($producto){
-        require("templates/detalleProducto.phtml");
+        require_once("templates/detalleProducto.phtml");
+    }
+
+    //funcion para mostrar el formulario para modificar un determinado producto
+    public function mostrarFormModProducto($producto, $categorias){
+        require_once "templates/formularioModProducto.phtml";
     }
 
 

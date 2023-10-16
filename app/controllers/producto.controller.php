@@ -6,33 +6,40 @@ class ProductoController{
     //atributos
     private $model;
     private $view;
+    private $categoriaModel;
 
     //constructor
     public function __construct(){
         $this->model = new ProductoModel;
         $this->view = new ProductoView;
+        $this->categoriaModel = new CategoriaModel;
     }
 
     //metodos
 
     public function mostrarProductos(){
+        //verifico que el usuario este logeado para mostrarle o no determinadas funcionalidades dentro de la pagina
+        $esAdmin = AutenHelper::esAdmin();
         //obtengo los productos de la db
         $productos = $this->model->getProductos();
-        //muestro los productos (view)
-        $this->view->mostrarProductos($productos);
+
+        //obtengo las categorias 
+        $categorias = $this->categoriaModel->getCategorias();
+        //muestro los productos 
+        $this->view->mostrarProductos($productos, $categorias, $esAdmin);
     }
 
     public function mostrarProductoXCategoria($id_fk){
         //obtengo los productos de una categoria determinada de la base de datos
         $productos = $this->model->getProductosXCategoria($id_fk);
 
-        //muestro esos productos (view)
+        //muestro esos productos 
         $this->view->mostrarProductosXCategoria($productos);
     }
 
     public function mostrarDetalleProducto($id){
         //obtengo un determinado producto para ver sus detalles
-        $producto = $this->model->getProducto($id);
+        $producto = $this->model->mostrarDetalleProducto($id);
 
         //muestro el detalle de ese producto
         $this->view->mostrarDetalle($producto);
@@ -70,6 +77,37 @@ class ProductoController{
     public function eliminarProducto($id){
         $this->model->eliminarProducto($id);
         header("location:" . BASE_URL ."mostrarProductos");
+    }
+
+    //funcion que muestra el formulario para modificar un determinado producto
+    public function formModificarProducto($id){
+        //obtengo las categorias para que del formulario se pueda modificar 
+        $categorias = $this->categoriaModel->getCategorias();
+        //obtengo el producto que quiero modificar 
+        $producto = $this->model->getProductoById($id);
+        //muestro el formulario para modificar dicho prodcuto
+        $this->view->mostrarFormModProducto($producto, $categorias);
+    }
+
+    //funcion para modificar un determinado producto
+    public function modificarProducto($id){
+        //obtengo los datos del formulario
+        $categoria = $_POST["id_categoria"];
+        $nombre = $_POST["nombre"];
+        $material = $_POST["material"];
+        $color = $_POST["color"];
+        $precio = $_POST["precio"];
+
+        //valido los datos
+        foreach($_POST as $item){
+            if(empty($item)){
+                $this->view->mostrarError("Debe completar todos los datos");
+                return;
+            }
+        }
+
+        $this->model->modificarProducto($id, $categoria, $nombre, $material, $color, $precio);
+        header("location:" . BASE_URL . "mostrarProductos");
     }
 
 }

@@ -2,6 +2,7 @@
 require_once("app/controllers/home.controller.php");
 require_once("app/controllers/categoria.controller.php");
 require_once("app/controllers/producto.controller.php");
+require_once("app/controllers/autenticacion.controller.php");
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -18,6 +19,8 @@ $controladorHome = new HomeController();
 $controladorCategoria = new CategoriaController();
 //Instacio el ProductoController
 $controladorProducto = new ProductoController();
+//Instancio el AutenticacionController
+$controladorAutenticador = new AutenticacionController();
 
 switch($params[0]){ //en la primer posicion tengo la accion real
     case "home":
@@ -31,6 +34,9 @@ switch($params[0]){ //en la primer posicion tengo la accion real
         break;
     case "borrarCategoria":
         $controladorCategoria->eliminarCategoria($params[1]);
+        break;
+    case "formModificarCategoria":
+        $controladorCategoria->formModificarCategoria($params[1]);
         break;
     case "modificarCategoria":
         $controladorCategoria->modificarCategoria($params[1]);
@@ -49,6 +55,20 @@ switch($params[0]){ //en la primer posicion tengo la accion real
         break;
     case "eliminarProducto":
         $controladorProducto->eliminarProducto($params[1]);
+        break;
+    case "formModificarProducto":
+        $controladorProducto->formModificarProducto($params[1]);
+        break;
+    case "modificarProducto":
+        $controladorProducto->modificarProducto($params[1]);
+    case "login":
+        $controladorAutenticador-> mostrarLogin();
+        break;
+    case "autenticacion":
+        $controladorAutenticador-> autenticacion();
+        break;
+    case "logout":
+        $controladorAutenticador-> logout();
         break;
     default:
         $controladorHome->mostrar404("error 404");

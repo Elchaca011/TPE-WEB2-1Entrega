@@ -7,11 +7,9 @@
                 <div class="form-group">
                     <label>Categoria:</label>
                     <select name="id_categoria" id="">
-                        <option value="1">Mate</option>
-                        <option value="2">Bombilla</option>
-                        <option value="3">Matera</option>
-                        <option value="4">Termo</option>
-                        <option value="5">Yerba</option>
+                        <?php foreach ($categorias as $categoria):?>
+                        <option value="<?=$categoria->id_categoria ?>"> <?= $categoria->categoria ?> </option>
+                        <?php endforeach ?>
                     </select>
                 </div>
             </div>
