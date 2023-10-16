@@ -35,11 +35,19 @@ class ProductoModel{
     }
 
     //esta funcion obtiene un producto determinado para mostrar sus detalles (los atributos material,color,precio)
-    public function getProducto($id){
+    public function mostrarDetalleProducto($id){
         $query = $this->db->prepare("SELECT id_categoria,material,color,precio FROM productos WHERE id_producto = ?");
         $query->execute([$id]);
 
         $producto = $query->fetch(PDO::FETCH_OBJ);
+        return $producto;
+    }
+
+    public function getProductoById($id){
+        $query = $this->db->prepare("SELECT * FROM productos WHERE id_producto = ?");
+        $query->execute([$id]);
+        $producto = $query->fetchAll(PDO::FETCH_OBJ);
+
         return $producto;
     }
 
@@ -54,5 +62,10 @@ class ProductoModel{
     public function eliminarProducto($id){
         $query = $this->db->prepare("DELETE FROM productos WHERE id_producto = ?");
         $query->execute([$id]);
+    }
+
+    public function modificarProducto($id, $categoria,$nombre,$material,$color,$precio){
+        $query = $this->db->prepare("UPDATE productos SET id_categoria = ?, nombre = ?, material = ?, color = ?, precio = ? WHERE id_producto = ?");
+        $query->execute([$categoria, $nombre, $material, $color,$precio, $id]);
     }
 }

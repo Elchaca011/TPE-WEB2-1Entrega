@@ -15,16 +15,23 @@ class CategoriaModel{
         //envio la consulta
         $query = $this->db->prepare("SELECT * FROM categorias");
         $query->execute();
-
         //$categorias es un arreglo de categorias
         $categorias = $query->fetchAll(PDO::FETCH_OBJ);
 
         return $categorias;
     }
 
+    //obtiene la categoria pasada por id
+    public function getCategoriaById($id){
+        $query = $this->db->prepare("SELECT * FROM categorias WHERE id_categoria = ?");
+        $query->execute([$id]);
+        $categoria = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $categoria;
+    }
+
     //inserta la categoria en la base de datos
     public function agregarCategoria($categoria, $fragil){
-
         //blindeo(Protego) los parametreos con VALUES(?,?) (seguridad)
         $query = $this->db->prepare("INSERT INTO categorias (categoria,fragil)VALUES(?,?)");
         $query->execute([$categoria,$fragil]);
@@ -40,8 +47,8 @@ class CategoriaModel{
     }
 
     //edita el atributo fragil de la base de datos
-    public function modificarCategoria($id){
-        $query = $this->db->prepare("UPDATE categorias SET fragil = 0 WHERE id_categoria = ?");
-        $query->execute([$id]);
+    public function modificarCategoria($id, $categoria, $fragil){
+        $query = $this->db->prepare("UPDATE categorias SET categoria = ?, fragil = ? WHERE id_categoria = ?");
+        $query->execute([$categoria, $fragil,$id]);
     }
 }
