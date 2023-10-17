@@ -34,22 +34,17 @@ class AutenticacionController{
             AutenHelper::login($usuario);
 
             //Redirecciono al home
-            header("location".BASE_URL."categorias");
+            header("location:".BASE_URL."categorias");
         }
         else{
             $this->view->mostrarError("Usuario invalido");
         }
     }
 
-    public function logOut(){
+    public function logout(){
         AutenHelper::logout();
         
         //Redirecciono al home
-        header("location".BASE_URL."home");
-
-
-
+        header("location:".BASE_URL."home");
     }
-        
-    
 }

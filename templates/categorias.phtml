@@ -1,28 +1,23 @@
 
 <?php require_once("templates/header.phtml") ?>
-<?php require_once("templates/formularioCategorias.phtml")?>
+
+<?php if($esAdmin):?>
+    <?php require_once("templates/formularioCategorias.phtml")?>
+<?php endif ?>
 
 
 <div class="container-listado">
 <ul class = 'list-group'>
     <?php foreach($categorias as $categoria): ?>
-        <?php if($categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark fragil'><span class="item-principal"><?= $categoria->categoria ?>s</span>
+            <li class ='list-group-item list-group-item-dark'><span class="item-principal"><?= $categoria->categoria ?></span>
                 <div class="links-listado">
-                    <a href="borrarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
-                    <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
-                    <a href="modificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">No fragil</a>
+                    <a href="mostrarProductoXCategoria/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
+                    <?php if($esAdmin):?>
+                        <a href="eliminarCategoria/<?=$categoria->id_categoria ?>" type='button' class='btn btn-danger ml-auto'>Borrar</a>
+                        <a href="formModificarCategoria/<?=$categoria->id_categoria?>" class="btn btn-success">Modificar</a>
+                    <?php endif ?>
                 </div>
             </li>
-        <?php endif?>
-        <?php if(!$categoria->fragil): ?>
-            <li class ='list-group-item list-group-item-dark'><span class="item-principal"><?= $categoria->categoria ?>s</span>
-                <div class="links-listado">
-                    <a href="borrarCategoria/<?=$categoria->id_categoria ?> "type='button' class='btn btn-danger ml-auto'>Borrar</a>
-                    <a href="mostrarProducto/<?=$categoria->id_categoria?>" class="btn btn-dark">Ver productos</a>
-                </div>
-            </li>
-        <?php endif ?>
     <?php endforeach?>
 </ul>
 </div>

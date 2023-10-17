@@ -32,13 +32,16 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "agregarCategoria":
         $controladorCategoria->agregarCategoria();
         break;
-    case "borrarCategoria":
+    case "eliminarCategoria":
         $controladorCategoria->eliminarCategoria($params[1]);
+        break;
+    case "formModificarCategoria":
+        $controladorCategoria->formModificarCategoria($params[1]);
         break;
     case "modificarCategoria":
         $controladorCategoria->modificarCategoria($params[1]);
         break;
-    case "mostrarProducto":
+    case "mostrarProductoXCategoria":
         $controladorProducto->mostrarProductoXCategoria($params[1]);
         break;
     case "mostrarDetalleProducto":
@@ -53,6 +56,12 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "eliminarProducto":
         $controladorProducto->eliminarProducto($params[1]);
         break;
+    case "formModificarProducto":
+        $controladorProducto->formModificarProducto($params[1]);
+        break;
+    case "modificarProducto":
+        $controladorProducto->modificarProducto($params[1]);
+        break;
     case "login":
         $controladorAutenticador-> mostrarLogin();
         break;
@@ -60,7 +69,7 @@ switch($params[0]){ //en la primer posicion tengo la accion real
         $controladorAutenticador-> autenticacion();
         break;
     case "logout":
-        $controladorAutenticador-> logOut();
+        $controladorAutenticador-> logout();
         break;
     default:
         $controladorHome->mostrar404("error 404");

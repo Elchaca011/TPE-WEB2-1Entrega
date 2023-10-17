@@ -9,22 +9,17 @@
         public static function login($usuario){
             //Corrobora que la sesion este iniciada()
             AutenHelper::inicioSesion();
-            $_SESSION["USER_ID"] = $usuario->id_usuario;
-            $_SESSION["USER_NAME"] = $usuario->nombre;
+            $_SESSION["id_usuario"] = $usuario->id_usuario;
+            $_SESSION["nombre"] = $usuario->nombre;
         }
 
-        public static function logOut(){
+        public static function logout(){
             AutenHelper::inicioSesion();
             session_destroy();
         }
 
-        public static function verificar(){
+        public static function esAdmin(){
             AutenHelper::inicioSesion();
-
-            if(!isset($_SESSION["id_usuario"])){
-                header("location".BASE_URL."login");
-                die();
-            }
+            return !empty($_SESSION["id_usuario"]);
         }
-
     }
