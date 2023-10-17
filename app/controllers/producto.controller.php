@@ -47,67 +47,89 @@ class ProductoController{
 
     //funcion que inserta un nuevo producto en la base de datos
     public function agregarProducto(){
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //obtengo los datos del usuario 
+            $id_categoria = $_POST["id_categoria"];
+            $nombre = $_POST["nombre"];
+            $material = $_POST["material"];
+            $color = $_POST["color"];
+            $precio = $_POST["precio"];
 
-        //obtengo los datos del usuario 
-        $id_categoria = $_POST["id_categoria"];
-        $nombre = $_POST["nombre"];
-        $material = $_POST["material"];
-        $color = $_POST["color"];
-        $precio = $_POST["precio"];
+            //validaciones
+            foreach($_POST as $item){
+                if(empty($item)){
+                    //si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
+                    $this->view->mostrarError("Debe completar todos los campos");
+                    return;
+                }
+            }
 
-        //validaciones
-        foreach($_POST as $item){
-            if(empty($item)){
-                //si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
-                $this->view->mostrarError("Debe completar todos los campos");
-                return;
+            $id = $this->model->agregarProducto($id_categoria,$nombre,$material,$color,$precio);
+            
+            if($id){
+                //redirigo al usuario a la pantalla de productos
+                header("location:" . BASE_URL ."mostrarProductos" );
+            }else{
+                $this->view->mostrarError("los datos no pueden ser cargados");
             }
         }
-
-        $id = $this->model->agregarProducto($id_categoria,$nombre,$material,$color,$precio);
-        
-        if($id){
-            //redirigo al usuario a la pantalla de productos
-            header("location:" . BASE_URL ."mostrarProductos" );
-        }else{
-            $this->view->mostrarError("los datos no pueden ser cargados");
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
         }
     }
 
     public function eliminarProducto($id){
-        $this->model->eliminarProducto($id);
-        header("location:" . BASE_URL ."mostrarProductos");
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            $this->model->eliminarProducto($id);
+            header("location:" . BASE_URL ."mostrarProductos");
+        }
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
+        }
     }
 
     //funcion que muestra el formulario para modificar un determinado producto
     public function formModificarProducto($id){
-        //obtengo las categorias para que del formulario se pueda modificar 
-        $categorias = $this->categoriaModel->getCategorias();
-        //obtengo el producto que quiero modificar 
-        $producto = $this->model->getProductoById($id);
-        //muestro el formulario para modificar dicho prodcuto
-        $this->view->mostrarFormModProducto($producto, $categorias);
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //obtengo las categorias para que del formulario se pueda modificar 
+            $categorias = $this->categoriaModel->getCategorias();
+            //obtengo el producto que quiero modificar 
+            $producto = $this->model->getProductoById($id);
+            //muestro el formulario para modificar dicho prodcuto
+            $this->view->mostrarFormModProducto($producto, $categorias);
+        }
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
+        }
     }
 
     //funcion para modificar un determinado producto
     public function modificarProducto($id){
-        //obtengo los datos del formulario
-        $categoria = $_POST["id_categoria"];
-        $nombre = $_POST["nombre"];
-        $material = $_POST["material"];
-        $color = $_POST["color"];
-        $precio = $_POST["precio"];
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //obtengo los datos del formulario
+            $categoria = $_POST["id_categoria"];
+            $nombre = $_POST["nombre"];
+            $material = $_POST["material"];
+            $color = $_POST["color"];
+            $precio = $_POST["precio"];
 
-        //valido los datos
-        foreach($_POST as $item){
-            if(empty($item)){
-                $this->view->mostrarError("Debe completar todos los datos");
-                return;
+            //valido los datos
+            foreach($_POST as $item){
+                if(empty($item)){
+                    $this->view->mostrarError("Debe completar todos los datos");
+                    return;
+                }
             }
+
+            $this->model->modificarProducto($id, $categoria, $nombre, $material, $color, $precio);
+            header("location:" . BASE_URL . "mostrarProductos");
         }
-
-        $this->model->modificarProducto($id, $categoria, $nombre, $material, $color, $precio);
-        header("location:" . BASE_URL . "mostrarProductos");
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
+        }
     }
-
 }

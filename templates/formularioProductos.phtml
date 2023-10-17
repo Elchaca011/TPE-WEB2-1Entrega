@@ -7,6 +7,7 @@
                 <div class="form-group">
                     <label>Categoria:</label>
                     <select name="id_categoria" id="">
+                        <option value="">Elegir</option>
                         <?php foreach ($categorias as $categoria):?>
                         <option value="<?=$categoria->id_categoria ?>"> <?= $categoria->categoria ?> </option>
                         <?php endforeach ?>
