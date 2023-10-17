@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2023 a las 18:36:27
+-- Tiempo de generación: 17-10-2023 a las 18:14:03
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,8 +42,7 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`, `fragil`) VALUES
 (2, 'Bombilla', 0),
 (3, 'Matera', 0),
 (4, 'Termo', 1),
-(5, 'Yerba', 0),
-(7, 'TERMITO', 0);
+(5, 'Yerba', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +70,15 @@ INSERT INTO `productos` (`id_producto`, `id_categoria`, `nombre`, `material`, `c
 (5, 3, 'Matera Canasta', 'cuero', 'Negro', 8000),
 (6, 4, 'Stanley 1L', 'Metal', 'Bordo', 45000),
 (7, 5, 'Canarias Serena', 'Yerba mate', 'Verde', 4500),
-(8, 1, 'Mate porongo', 'porongo', 'marron', 15000);
+(8, 1, 'Mate porongo', 'porongo', 'marron', 15000),
+(10, 2, 'Bombilla Chata-plana', 'Acero inoxidable', 'Metal', 5000),
+(11, 2, 'Bombilla Resorte', 'Acero inoxidable', 'Metal', 10000),
+(12, 3, 'Matera Mochila', 'Lona', 'Negro', 18000),
+(13, 3, 'Matera Bolso', 'Lona', 'Gris', 10000),
+(14, 5, 'ReiVerde Tradicional', 'Yerba', 'Amarillo', 3500),
+(15, 5, 'ReiVerde Premium', 'Yerba', 'Negro', 5000),
+(16, 4, 'Coleman 1.2L', 'Acero inoxidable', 'Negro', 63000),
+(17, 4, 'Termo Media Manija 1L', 'Acero inoxidable', 'Metal', 17500);
 
 -- --------------------------------------------------------
 
@@ -123,13 +130,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

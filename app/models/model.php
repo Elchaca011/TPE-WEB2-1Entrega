@@ -18,32 +18,8 @@ require_once "app/helpers/database.helper.php";
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
             if(count($tables)==0) {
-                 // Si no hay crearlas
-                 $sql =<<<END
-                    CREATE TABLE `categorias` (
-                        `id_categoria` int(11) NOT NULL,
-                        `categoria` varchar(250) NOT NULL,
-                        `fragil` tinyint(1) NOT NULL
-                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-                    
-                    --
-                    -- Volcado de datos para la tabla `categorias`
-                    --
-                    
-                    INSERT INTO `categorias` (`id_categoria`, `categoria`, `fragil`) VALUES
-                    (1, 'Mate', 1),
-                    (2, 'Bombilla', 0),
-                    (3, 'Matera', 0),
-                    (4, 'Termo', 1),
-                    (5, 'Yerba', 0),
-                    (7, 'TERMITO', 0);
-                    
-                    -- --------------------------------------------------------
-                    
-                    --
-                    -- Estructura de tabla para la tabla `productos`
-                    --
-                    
+                // Si no hay crearlas
+                $sql =<<<END
                     CREATE TABLE `productos` (
                         `id_producto` int(11) NOT NULL,
                         `id_categoria` int(11) NOT NULL,
@@ -64,7 +40,15 @@ require_once "app/helpers/database.helper.php";
                     (5, 3, 'Matera Canasta', 'cuero', 'Negro', 8000),
                     (6, 4, 'Stanley 1L', 'Metal', 'Bordo', 45000),
                     (7, 5, 'Canarias Serena', 'Yerba mate', 'Verde', 4500),
-                    (8, 1, 'Mate porongo', 'porongo', 'marron', 15000);
+                    (8, 1, 'Mate porongo', 'porongo', 'marron', 15000),
+                    (10, 2, 'Bombilla Chata-plana', 'Acero inoxidable', 'Metal', 5000),
+                    (11, 2, 'Bombilla Resorte', 'Acero inoxidable', 'Metal', 10000),
+                    (12, 3, 'Matera Mochila', 'Lona', 'Negro', 18000),
+                    (13, 3, 'Matera Bolso', 'Lona', 'Gris', 10000),
+                    (14, 5, 'ReiVerde Tradicional', 'Yerba', 'Amarillo', 3500),
+                    (15, 5, 'ReiVerde Premium', 'Yerba', 'Negro', 5000),
+                    (16, 4, 'Coleman 1.2L', 'Acero inoxidable', 'Negro', 63000),
+                    (17, 4, 'Termo Media Manija 1L', 'Acero inoxidable', 'Metal', 17500);
                     
                     -- --------------------------------------------------------
                     
@@ -116,13 +100,13 @@ require_once "app/helpers/database.helper.php";
                     -- AUTO_INCREMENT de la tabla `categorias`
                     --
                     ALTER TABLE `categorias`
-                        MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+                        MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
                     
                     --
                     -- AUTO_INCREMENT de la tabla `productos`
                     --
                     ALTER TABLE `productos`
-                        MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+                        MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
                     
                     --
                     -- AUTO_INCREMENT de la tabla `usuarios`
