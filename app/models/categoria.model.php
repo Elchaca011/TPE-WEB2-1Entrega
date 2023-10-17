@@ -1,15 +1,10 @@
 <?php
 //incluyo el config.php el cual se encarga de la conexion a la db
-require_once("config.php");
-class CategoriaModel{
-    //atributo
-    private $db;
+require_once ("database/config.php");
+require_once ('app/models/model.php');
 
-    //constructor
-    function __construct(){
-        $this->db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";" . DB_Charset , DB_USER , DB_PASS);
-    }
-
+class CategoriaModel extends Model{
+ 
     //obtiene y devuelve de la base de datos todas las categorias.
     public function getCategorias(){
         //envio la consulta

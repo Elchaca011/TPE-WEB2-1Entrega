@@ -32,7 +32,7 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "agregarCategoria":
         $controladorCategoria->agregarCategoria();
         break;
-    case "borrarCategoria":
+    case "eliminarCategoria":
         $controladorCategoria->eliminarCategoria($params[1]);
         break;
     case "formModificarCategoria":
@@ -41,7 +41,7 @@ switch($params[0]){ //en la primer posicion tengo la accion real
     case "modificarCategoria":
         $controladorCategoria->modificarCategoria($params[1]);
         break;
-    case "mostrarProducto":
+    case "mostrarProductoXCategoria":
         $controladorProducto->mostrarProductoXCategoria($params[1]);
         break;
     case "mostrarDetalleProducto":
@@ -61,6 +61,7 @@ switch($params[0]){ //en la primer posicion tengo la accion real
         break;
     case "modificarProducto":
         $controladorProducto->modificarProducto($params[1]);
+        break;
     case "login":
         $controladorAutenticador-> mostrarLogin();
         break;

@@ -6,8 +6,9 @@
             <div class="row">
                 <div class="col-9">
                     <div class="form-group">
-                        <label>Categoria:</label>
+                        <label>Modificar categoria:</label>
                         <select name="id_categoria" id="">
+                            <option value="">Elegir</option>
                             <?php foreach ($categorias as $categoria):?>
                             <option value="<?=$categoria->id_categoria ?>"> <?= $categoria->categoria ?> </option>
                             <?php endforeach ?>

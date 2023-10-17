@@ -29,63 +29,84 @@ class CategoriaController{
     }
 
     public function agregarCategoria(){
-        //obtengo los datos del usuario
-        $categoria = $_POST["categoria"];
-        $fragil = $_POST["fragil"];
+        $esAdmin = AutenHelper::esAdmin();
+        //verifica que un usuario no logeado no pueda acceder a estas acciones.
+        if($esAdmin){
+            //obtengo los datos del usuario
+            $categoria = $_POST["categoria"];
+            $fragil = $_POST["fragil"];
 
 
-        //validaciones
-        foreach($_POST as $item){
-            if(empty($item)){
+            //validaciones
+            if(empty($categoria) || !($fragil==true || $fragil==false)){
                 //si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
                 $this->view->mostrarError("Debe completar todos los campos");
-                return;
+                return;    
+            }
+
+            $id = $this->model->agregarCategoria($categoria,$fragil);
+            
+            if($id){
+                //redirigo al usuario a la pantalla de categorias
+                header("location: ". BASE_URL . "categorias" );
+            }else{
+                $this->view->mostrarError("los datos no pueden ser cargados");
             }
         }
-
-        $id = $this->model->agregarCategoria($categoria,$fragil);
-        
-        if($id){
-            //redirigo al usuario a la pantalla de categorias
-            header("location: ". BASE_URL . "categorias" );
-        }else{
-            $this->view->mostrarError("los datos no pueden ser cargados");
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
         }
     }
 
     public function eliminarCategoria($id){
-        //bloque try catch para manejar la excepcion de no poder borrar una categoria con productos cargados
-        try{
-            $this->model->eliminarCategoria($id);
-            header("location: ". BASE_URL . "categorias" );
-        }catch(Exception){
-            $this->view->mostrarError("No se puede eliminar una categoria que tenga productos cargados!");
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //bloque try catch para manejar la excepcion de no poder borrar una categoria con productos cargados
+            try{
+                $this->model->eliminarCategoria($id);
+                header("location: ". BASE_URL . "categorias" );
+            }catch(Exception){
+                $this->view->mostrarError("No se puede eliminar una categoria que tenga productos cargados!");
+            }
+        }
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
         }
     }
 
     public function formModificarCategoria($id){
-        //obtengo la categoria pasada por parametro
-        $categoria = $this->model->getCategoriaById($id);
-        //muestro el formulario para poder modificar dicha categoria
-        $this->view->mostrarformModCategoria($categoria);
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //obtengo la categoria pasada por parametro
+            $categoria = $this->model->getCategoriaById($id);
+            //muestro el formulario para poder modificar dicha categoria
+            $this->view->mostrarformModCategoria($categoria);
+        }
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
+        }
     }
     
     //funcion para modificar categoria 
     public function modificarCategoria($id){
-        //obtengo los datos que quiere modificar el usuario
-        $categoria = $_POST["categoria"];
-        $fragil = $_POST["fragil"];
+        $esAdmin = AutenHelper::esAdmin();
+        if($esAdmin){
+            //obtengo los datos que quiere modificar el usuario
+            $categoria = $_POST["categoria"];
+            $fragil = $_POST["fragil"]; 
 
-        //validaciones
-        foreach($_POST as $item){
-            if(empty($item)){
+            //validaciones
+            if(empty($categoria) || !($fragil==true || $fragil==false)){
                 //si alguno de los campos esta vacio muestro por pantalla el error (responsabilidad del view)
                 $this->view->mostrarError("Debe completar todos los campos");
-                return;
+                return;    
             }
-        }
 
-        $this->model->modificarCategoria($id, $categoria, $fragil);
-        header("location: ". BASE_URL . "categorias" );
+            $this->model->modificarCategoria($id, $categoria, $fragil);
+            header("location: ". BASE_URL . "categorias" );
+        }
+        else{
+            $this->view->mostrarError("No tenes permisos suficientes");
+        }
     }
 }
