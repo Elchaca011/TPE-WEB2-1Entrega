@@ -20,6 +20,29 @@ require_once "app/helpers/database.helper.php";
             if(count($tables)==0) {
                 // Si no hay crearlas
                 $sql =<<<END
+                    CREATE TABLE `categorias` (
+                        `id_categoria` int(11) NOT NULL,
+                        `categoria` varchar(250) NOT NULL,
+                        `fragil` tinyint(1) NOT NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+                    
+                    --
+                    -- Volcado de datos para la tabla `categorias`
+                    --
+                    
+                    INSERT INTO `categorias` (`id_categoria`, `categoria`, `fragil`) VALUES
+                    (1, 'Mate', 1),
+                    (2, 'Bombilla', 0),
+                    (3, 'Matera', 0),
+                    (4, 'Termo', 1),
+                    (5, 'Yerba', 0);
+                    
+                    -- --------------------------------------------------------
+                    
+                    --
+                    -- Estructura de tabla para la tabla `productos`
+                    --
+                    
                     CREATE TABLE `productos` (
                         `id_producto` int(11) NOT NULL,
                         `id_categoria` int(11) NOT NULL,
