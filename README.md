@@ -9,8 +9,8 @@ Nuestras tablas se relacionan mediante la columna *id_categoria* de manera que c
 
 ## Ejecucion del proyecto
 *  Se necesita instalar XAMMP Link de descarga https://www.apachefriends.org/es/download.html.
-*  Luego dirigirse a la carpeta instalada con el nombre xammp
-*  En dicha carpeta buscar la carpeta htdocs
-*  Adentro de la carpeta htdocs pegar el proyecto
-*  Abrir el panel de control de XAMMP encendiendo el servidor y MYSQL
-*  Una vez hecho esto ya podes ver el proyecto en localhost/proyecto-descargado
+*  Luego dirigirse a la carpeta instalada con el nombre xammp.
+*  En dicha carpeta buscar la carpeta htdocs.
+*  Adentro de la carpeta htdocs pegar el proyecto.
+*  Abrir el panel de control de XAMMP encendiendo el servidor y MYSQL.
+*  Una vez hecho esto ya podes ver el proyecto en localhost/proyecto_descargado
